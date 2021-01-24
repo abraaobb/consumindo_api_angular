@@ -17,6 +17,30 @@ export class AlunosComponent implements OnInit {
     this.listarAlunos();
   }
 
+  atualizar(id: number) {
+    this.alunosService.atualizarAluno(id, this.aluno).subscribe(
+      (aluno) => {
+        this.aluno = new AlunoModel();
+        this.listarAlunos();
+      },
+      (err) => {
+        console.log('erro ao atualizar o aluno');
+      }
+    );
+  }
+
+  remover(id:number) {
+    this.alunosService.removerAluno(id).subscribe(
+      (aluno) => {
+        this.aluno = new AlunoModel();
+        this.listarAlunos();
+      },
+      (err) => {
+        console.log('erro ao atualizar o aluno');
+      }
+    );
+  }
+
   cadastrar() {
     console.log(this.aluno);
     this.alunosService.cadastrarAluno(this.aluno).subscribe(
